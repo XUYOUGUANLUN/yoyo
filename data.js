@@ -19,7 +19,7 @@ const customerData = [
             {
                 day: 1,
                 schedule: [
-                    { time: "9:00-11:00", activity: "集合出發" },
+                    { time: "13:00-13:30", activity: "確認資料、上車" },
                     { time: "11:00-12:00", activity: "午餐" },
                     { time: "12:30-15:00", activity: "景點遊覽" },
                     { time: "15:30-17:00", activity: "自由活動" },
@@ -80,5 +80,14 @@ const leaderInfo = {
 // 預設登入帳號
 const users = [
     { username: "leader1", password: "leader123", role: "leader" },
-    { username: "Passion", password: "00000", role: "customer" } // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
+    { username: "Passion", password: "00000", role: "customer" }, // 顧客預設
 ];

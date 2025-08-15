@@ -3,19 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>領隊端</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#f0f0f0; padding:20px; }
+        h2 { text-align:center; }
+        table { width:100%; border-collapse:collapse; margin-top:20px; }
+        th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+        th { background:#007bff; color:white; }
+        button { padding:10px 20px; background:#007bff; color:white; border:none; border-radius:5px; cursor:pointer; margin-top:10px; }
+        button:hover { background:#0056b3; }
+    </style>
 </head>
 <body>
-    <div class="menu-container">
-        <h2>領隊資料管理</h2>
-        <button id="all-customers-btn">查看所有旅客</button>
-        <button id="itinerary-btn">當天行程</button>
-        <button id="logout-btn">登出</button>
-    </div>
-    <div id="info-display"></div>
+    <h2>領隊系統</h2>
+    <button id="logout-btn">登出</button>
+    <div id="customer-table"></div>
 
     <script src="data.js"></script>
-    <script src="leader.js"></script>
+    <script>
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        if(!currentUser || currentUser.role !== "leader") {
+            alert("請先登入領隊帳號！");
+            window.location.href = "index.html";
+        }
+
+        const tableDiv = document.getElementById("customer-table");
+        let html = "<table><tr><th>旅客姓名</th><th>房號</th><th>緊急聯絡人</th></tr>";
+
+        customerData.forEach(cust => {
+            html += `<tr>
+                        <td>${cust.name}</td>
+                        <td>${cust.rooms.find(r => r.day===1).hotel} / ${cust.rooms.find(r => r.day===1).number}</td>
+                        <td>${cust.emergency.name} / ${cust.emergency.phone}</td>
+                     </tr>`;
+        });
+        html += "</table>";
+        tableDiv.innerHTML = html;
+
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            sessionStorage.removeItem("currentUser");
+            window.location.href = "index.html";
+        });
+    </script>
 </body>
 </html>
