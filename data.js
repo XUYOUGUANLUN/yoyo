@@ -1,4 +1,5 @@
 // 預設顧客資料
+// 預設顧客資料
 const customerData = [
     {
         id: "C001",
@@ -18,58 +19,62 @@ const customerData = [
         itinerary: [
             {
                 day: 1,
+                date: "2026/01/00",
                 schedule: [
                     { time: "13:00-13:30", activity: "確認資料、上車" },
-                    { time: "", activity: "" },
-                    { time: "", activity: "" },
                     { time: "17:30-18:00", activity: "call in" },
                     { time: "18:00-19:00", activity: "晚餐" },
-                    { time: "19:00-:20：00", activity: "回飯店休息" }
+                    { time: "19:00-20:00", activity: "回飯店休息" }
                 ]
             },
             {
                 day: 2,
+                date: "2026/01/00",
                 schedule: [
-                    { time: "7:00-9:00", activity: "洗漱時間and早餐時間" },
-                    { time: "9:30-12:00", activity: "" },
-                    { time: "12:30-13:30", activity: "" },
-                    { time: "14:00-17:00", activity: "" },
-                    { time: "18:00-19:00", activity: "" }
+                    { time: "7:00-9:00", activity: "洗漱時間和早餐" },
+                    { time: "9:30-12:00", activity: "觀光行程" },
+                    { time: "12:30-13:30", activity: "午餐" },
+                    { time: "14:00-17:00", activity: "戶外活動" },
+                    { time: "17:30-18:00", activity: "call in" }
                 ]
             },
             {
                 day: 3,
+                date: "2026/01/00",
                 schedule: [
-                    { time: "7:00-9:00", activity: "洗漱時間and早餐時間"  },
+                    { time: "7:00-9:00", activity: "洗漱時間和早餐" },
                     { time: "9:30-12:00", activity: "文化博物館參觀" },
                     { time: "12:30-13:30", activity: "午餐" },
                     { time: "14:00-16:00", activity: "手作工坊" },
                     { time: "16:30-18:00", activity: "自由活動" },
-                    { time: "18:30-19:30", activity: "晚餐" }
+                    { time: "17:30-18:00", activity: "call in" }
                 ]
             },
             {
                 day: 4,
+                date: "2026/01/00",
                 schedule: [
-                    {  time: "7:00-9:00", activity: "洗漱時間and早餐時間" },
-                    { time: "9:30-12:00", activity: "參觀植物園" },
-                    { time: "12:30-13:30", activity: "午餐" },
-                    { time: "14:00-17:00", activity: "手作體驗" },
-                    { time: "18:00-19:00", activity: "晚餐" }
+                    { time: "7:00-9:00", activity: "洗漱時間和早餐" },
+                    { time: "9:30-12:00", activity: "" },
+                    { time: "12:30-13:30", activity: "" },
+                    { time: "14:00-17:00", activity: "" },
+                    { time: "17:30-18:00", activity: "call in" }
                 ]
             },
             {
                 day: 5,
+                date: "2026/01/00",
                 schedule: [
-                    {  time: "7:00-9:00", activity: "洗漱時間and早餐時間"  },
-                    { time: "9:30-11:30", activity: "紀念品採購" },
-                    { time: "12:00-13:00", activity: "午餐" },
-                    { time: "13:30-15:30", activity: "返回集合點" }
+                    { time: "7:00-9:00", activity: "洗漱時間和早餐" },
+                    { time: "9:30-11:30", activity: "" },
+                    { time: "12:00-13:00", activity: "" },
+                    { time: "17:30-18:00", activity: "call in" }
                 ]
             }
         ]
     }
 ];
+
 
 // 預設領隊資料
 const leaderInfo = {

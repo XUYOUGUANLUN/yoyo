@@ -1,54 +1,90 @@
-// 檢查是否已登入
-const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-if (!currentUser || currentUser.role !== "customer") {
-    alert("請先登入！");
-    window.location.href = "index.html";
-}
+// customer.js
 
-// 設定今天日期 (假設旅行第一天為 2025-08-15)
-const startDate = new Date("2025-08-15"); 
-const todayDate = new Date();
-const diffTime = todayDate - startDate;
-const today = Math.min(Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1, 5); // 1~5 天
+document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    const display = document.getElementById("info-display");
 
-// 登出按鈕
-document.getElementById("logout-btn").addEventListener("click", function(){
-    sessionStorage.removeItem("currentUser");
-    window.location.href = "index.html";
-});
+    if (!currentUser) {
+        display.innerHTML = "<p style='color:red;'>請先登入！</p>";
+        return;
+    }
 
-// 顯示房號資訊
-document.getElementById("room-btn").addEventListener("click", function(){
-    const room = customerData[0].rooms.find(r => r.day === today);
-    document.getElementById("info-display").innerHTML =
-        `<p>飯店名稱：${room.hotel}</p>
-         <p>房號：${room.number}</p>`;
-});
+    // 找到對應顧客資料
+    const customer = customerData.find(c => c.name === currentUser.username);
 
-// 顯示緊急聯絡人
-document.getElementById("emergency-btn").addEventListener("click", function(){
-    const data = customerData[0].emergency;
-    document.getElementById("info-display").innerHTML =
-        `<p>緊急連絡人姓名：${data.name}</p>
-         <p>緊急連絡人電話：${data.phone}</p>`;
-});
+    if (!customer) {
+        display.innerHTML = "<p style='color:red;'>找不到顧客資料</p>";
+        return;
+    }
 
-// 顯示當天行程 (時間 + 內容)
-document.getElementById("itinerary-btn").addEventListener("click", function(){
-    const dayItinerary = customerData[0].itinerary.find(d => d.day === today);
-    let tableHTML = `<table border="1" cellspacing="0" cellpadding="5">
-                        <tr><th>時間</th><th>內容</th></tr>`;
-    dayItinerary.schedule.forEach(item => {
-        tableHTML += `<tr><td>${item.time}</td><td>${item.activity}</td></tr>`;
+    // ===== 顯示基本資料 =====
+    const baseInfo = document.createElement("div");
+    baseInfo.innerHTML = `
+        <h2>基本資料</h2>
+        <p><strong>姓名：</strong>${customer.name}</p>
+        <p><strong>緊急聯絡人：</strong>${customer.emergency.name}</p>
+        <p><strong>聯絡電話：</strong>${customer.emergency.phone}</p>
+    `;
+    display.appendChild(baseInfo);
+
+    // ===== 顯示房間資訊 =====
+    const roomInfo = document.createElement("div");
+    roomInfo.innerHTML = `
+        <h2>房間資訊</h2>
+        <table border="1" style="width:100%; border-collapse:collapse; text-align:center;">
+            <thead>
+                <tr>
+                    <th>天數</th>
+                    <th>飯店</th>
+                    <th>房號</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${customer.rooms.map(r => `
+                    <tr>
+                        <td>第 ${r.day} 天</td>
+                        <td>${r.hotel || "-"}</td>
+                        <td>${r.number || "-"}</td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        </table>
+    `;
+    display.appendChild(roomInfo);
+
+    // ===== 顯示行程（含日期） =====
+    const itineraryInfo = document.createElement("div");
+    itineraryInfo.innerHTML = `<h2>行程安排</h2>`;
+    display.appendChild(itineraryInfo);
+
+    customer.itinerary.forEach(item => {
+        const table = document.createElement("table");
+        table.border = "1";
+        table.style.width = "100%";
+        table.style.marginBottom = "20px";
+        table.style.borderCollapse = "collapse";
+        table.style.textAlign = "center";
+
+        table.innerHTML = `
+            <thead>
+                <tr style="background:#cce0ff;">
+                    <th colspan="2">第 ${item.day} 天 (${item.date})</th>
+                </tr>
+                <tr>
+                    <th>時間</th>
+                    <th>行程內容</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${item.schedule.map(s => `
+                    <tr>
+                        <td>${s.time || "-"}</td>
+                        <td>${s.activity || "-"}</td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        `;
+
+        itineraryInfo.appendChild(table);
     });
-    tableHTML += `</table>`;
-    document.getElementById("info-display").innerHTML = tableHTML;
-});
-
-// 顯示領隊介紹
-document.getElementById("leader-btn").addEventListener("click", function(){
-    document.getElementById("info-display").innerHTML =
-        `<p>領隊名稱：${leaderInfo.name}</p>
-         <p>聯絡電話：${leaderInfo.contact}</p>
-         <p>介紹：${leaderInfo.intro}</p>`;
 });
