@@ -32,9 +32,9 @@ const customerData = [
                 date: "2026/01/00",
                 schedule: [
                     { time: "7:00-9:00", activity: "洗漱時間和早餐" },
-                    { time: "9:30-12:00", activity: "觀光行程" },
-                    { time: "12:30-13:30", activity: "午餐" },
-                    { time: "14:00-17:00", activity: "戶外活動" },
+                    { time: "9:30-12:00", activity: "" },
+                    { time: "12:30-13:30", activity: "" },
+                    { time: "14:00-17:00", activity: "" },
                     { time: "17:30-18:00", activity: "call in" }
                 ]
             },
@@ -43,10 +43,9 @@ const customerData = [
                 date: "2026/01/00",
                 schedule: [
                     { time: "7:00-9:00", activity: "洗漱時間和早餐" },
-                    { time: "9:30-12:00", activity: "文化博物館參觀" },
-                    { time: "12:30-13:30", activity: "午餐" },
-                    { time: "14:00-16:00", activity: "手作工坊" },
-                    { time: "16:30-18:00", activity: "自由活動" },
+                    { time: "9:30-12:00", activity: "" },
+                    { time: "12:30-13:30", activity: "" },
+                    { time: "14:00-17:00", activity: "" },
                     { time: "17:30-18:00", activity: "call in" }
                 ]
             },
